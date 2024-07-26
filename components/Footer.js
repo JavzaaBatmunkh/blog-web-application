@@ -5,7 +5,7 @@ import { FaInstagram } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 export function Footer() {
     return (<div className="bg-[#E8E8EA]">
-        <div className="container mx-auto flex justify-between pt-16">
+        <div className="container mx-auto flex justify-between pt-16 pb-6">
             <div className="w-72">
                 <h2 className="font-bold">About</h2>
                 Lorem ipsum dolor sit amet,
@@ -30,7 +30,7 @@ export function Footer() {
             </div>
         </div>
         
-        <div className="container mx-auto py-5 flex justify-between">
+        <div className="container mx-auto py-5 flex justify-between border-t border-t-slate-400">
             
             <Image src="/Copyright.svg" width={223} height={223}/>
             <div className="flex gap-8">
