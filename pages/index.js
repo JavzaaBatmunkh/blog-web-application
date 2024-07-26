@@ -1,3 +1,5 @@
+import { Footer } from "@/components/Footer";
+import { Header } from "@/components/Header";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -28,10 +30,13 @@ export default function Home() {
   }
 
   return (
-    <main className="container mx-auto">
-      <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-8">
+    <main className="bg-white text-black">
+      <div className="container mx-auto">
+      <Header/>
+      <h1 className="py-12 text-2xl font-bold">All Blog Post</h1>
+      <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-8 " >
         {articles.map((item) => (
-          <div key={item.id} className="card bg-base-100">
+          <div key={item.id} className="card bg-base-100 bg-white border-2 border-gray">
             <div className="card-body">
               <div className="badge badge-primary">{item.tag_list[0]}</div>
               <Image src={item.social_image} width={500} height={500} />
@@ -52,7 +57,8 @@ export default function Home() {
       <div className="text-center py-6" onClick={loadMore}>
         <button className="btn btn-lg btn-accent ">Load more</button>
       </div>}
-
+      </div>
+      <Footer/>
     </main>
   );
 }
