@@ -7,13 +7,12 @@ import dayjs from "dayjs";
 import relativeTime from 'dayjs/plugin/relativeTime' // ES 2015
 import "@/components/dayjs-mn"
 
-
 dayjs.extend(relativeTime)
 
 const pageSize = 3
 
 
-export default function Home() {
+export default function BlogListing() {
   const [articles, setArticles] = useState([]);
   const [page, setPAge] = useState(1)
   const [ended, setEnded] = useState(false)
@@ -39,39 +38,16 @@ export default function Home() {
   }
 
   return (
-    <main className="bg-white text-black ">
-      <div className="container mx-auto p-8 max-w-7xl">
+    <main className="bg-white text-black">
+      <div className="container mx-auto">
         <Header />
-        <div className="carousel w-full" >
-          {articles.map((item, index) => (
-            index < 10 &&
-            <div id={`slide${index}`} className="carousel-item relative w-full" key={item.id}>
-              <Image src={item.social_image} className="w-full" width={500} height={500} />
-              <div className="absolute left-2 bottom-2 bg-slate-100 flex flex-col card">
-                <div className="card-body">
-                <div className="badge badge-primary">{item.tag_list[0]}</div>
-                <Link href={item.path} className="text-4xl font-semibold">
-                  {item.title}
-                </Link>
-                <div>{dayjs(item.published_at).format("MMMM DD, YYYY")}</div>
-                </div>
-              </div>
-
-              <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-                <a href={`#slide${index - 1}`} className="btn btn-circle">❮</a>
-                <a href={`#slide${index + 1}`} className="btn btn-circle">❯</a>
-              </div>
-            </div>
-          ))}
-        </div>
-
         <h1 className="py-12 text-2xl font-bold">All Blog Post</h1>
         <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-8 " >
           {articles.map((item) => (
             <div key={item.id} className="card bg-base-100 bg-white border-2 border-gray">
               <div className="card-body">
                 <div className="badge badge-primary">{item.tag_list[0]}</div>
-                <Image src={item.social_image} width={500} height={500} className="aspect-video object-cover bg-slate-600" />
+                <Image src={item.social_image} width={500} height={500} className="aspect-video object-cover bg-slate-600"/>
                 <Link href={item.path} >
                   {item.title}
                 </Link>
