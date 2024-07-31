@@ -13,12 +13,12 @@ export function Header() {
     }
 
     return (
-        <div className="bg-yellow flex items-center text-black pb-8 justify-between max-w-4xl mx-auto">
+        <div className="bg-yellow flex items-center text-black py-8 justify-between max-w-5xl mx-auto">
             <Image src="/Logo.svg" width={200} height={200} />
             <div className=" gap-10 items-center hidden sm:flex">
-                <Link href="/"><button>Home</button></Link>
-                <Link href="/blog"><button>Blog</button></Link>
-                <Link href="/contact"><button>Contact</button></Link>
+                <Link href="/">Home</Link>
+                <Link href="/blog">Blog</Link>
+                <Link href="/contact">Contact</Link>
             </div>
             <label className="input input-bordered flex items-center gap-2 bg-slate-100 hidden md:block">
                 <input type="text" className="grow" placeholder="Search" />
@@ -37,12 +37,12 @@ export function Header() {
                 <GiHamburgerMenu />
             </button>
             <div
-                className={` fixed top-0 bottom-0 w-full bg-slate-500/90  transition-all 
+                className={`z-50 fixed top-0 bottom-0 w-full bg-slate-500/90  transition-all 
             ${open ? "opacity-100 right-64" : "opacity-0 -right-full"}`}
                 onClick={closeMenu}
             ></div>
             <div
-                className={` flex flex-col p-8 fixed top-0 bottom-0  w-64 bg-white dark:bg-slate-800 dark:text-white shadow-lg text-black transition-all 
+                className={`z-50 flex flex-col p-8 fixed top-0 bottom-0  w-64 bg-white dark:bg-slate-800 dark:text-white shadow-lg text-black transition-all 
         ${open ? "right-0 " : "-right-full"}`}
             >
                 <Link href="/">Home</Link>

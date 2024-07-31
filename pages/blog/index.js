@@ -24,7 +24,7 @@ export default function BlogListing() {
 
   function loadMore() {
     setLoading(true)
-    fetch(`https://dev.to/api/articles?username=paul_freeman&page=${page}&per_page=${pageSize}`)
+    fetch(`https://dev.to/api/articles?top=365&page=${page}&per_page=${pageSize}`)
       .then(response => { return response.json(); })
       .then((data) => {
         const newArticles = articles.concat(data)
