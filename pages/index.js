@@ -27,7 +27,7 @@ export default function Home() {
     loadMore()
   }, []);
 
-  function selectCategory(name){
+  function selectCategory(name) {
     setCategory(name);
     loadCategoryArticles(name);
 
@@ -49,7 +49,7 @@ export default function Home() {
       });
   }
 
-  console.log({articles})
+  console.log({ articles })
 
   return (
     <main className="bg-white text-black ">
@@ -60,17 +60,14 @@ export default function Home() {
 
         <h1 className="py-12 text-2xl font-bold">All Blog Post</h1>
 
-        <div className="join mb-4">
-          <input className="join-item btn border-black" type="radio" name="options" aria-label="All" />
-          <input className="join-item btn border-black" type="radio" name="options" aria-label="Javascript" />
-          <input className="join-item btn border-black" type="radio" name="options" aria-label="React" />
-          <input className="join-item btn border-black" type="radio" name="options" aria-label="Typescript" />
-          <input className="join-item btn border-black" type="radio" name="options" aria-label="Database" />
-          <input className="join-item btn border-black" type="radio" name="options" aria-label="Frontend" />
-          <input className="join-item btn border-black" type="radio" name="options" aria-label="Backend" />
-
-          <div onClick={() => selectCategory('javascript')}>JS</div>
-          <div>React</div>
+        <div className="flex gap-4">
+          <div onClick={() => selectCategory('backtend')}>All</div>
+          <div onClick={() => selectCategory('javascript')}>Javascript</div>
+          <div onClick={() => selectCategory('react')}>React</div>
+          <div onClick={() => selectCategory('webdev')}>Web development</div>
+          <div onClick={() => selectCategory('database')}>Database</div>
+          <div onClick={() => selectCategory('frontend')}>Frontend</div>
+          <div onClick={() => selectCategory('backtend')}>Backend</div>
         </div>
 
         <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-8 " >
@@ -99,7 +96,7 @@ export default function Home() {
             if (!item.tag_list.includes('javascript')) {
               return null;
             }
-              return (
+            return (
 
               <div key={item.id} className="card bg-base-100 bg-white border-2 border-gray">
                 <div className="card-body">
