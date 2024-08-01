@@ -8,123 +8,102 @@ import relativeTime from 'dayjs/plugin/relativeTime' // ES 2015
 import "@/components/dayjs-mn"
 import { Trending } from "@/components/trending";
 import { Carousel } from "@/components/carousel";
-
-
 dayjs.extend(relativeTime)
-
-const pageSize = 3
-
+const tags = [{ value: "", name: "All" },
+{ value: "javascript", name: "JavaScript" },
+{ value: "react", name: "React" },
+{ value: "webdev", name: "Web development" },
+{ value: "database", name: "Database" },
+{ value: "frontend", name: "Frontend" },
+{ value: "backend", name: "Backend" },
+{ value: "motivation", name: "Motivation" },
+]
 
 export default function Home() {
   const [articles, setArticles] = useState([]);
-  const [page, setPAge] = useState(1)
-  const [ended, setEnded] = useState(false)
   const [loading, setLoading] = useState(false)
-
-  const [category, setCategory] = useState();
+  const [selectedCategory, setSelectedCategory] = useState("")
+  const [page, setPage]=useState(1)
 
   useEffect(() => {
-    loadMore()
-  }, []);
+    loadArticles()  
+    setPage(1)
+  }, [selectedCategory]);
 
-  function selectCategory(name) {
-    setCategory(name);
-    loadCategoryArticles(name);
-
-  }
-
-  function loadMore() {
+  async function loadArticles() {
     setLoading(true)
-    fetch(`https://dev.to/api/articles?top=365&page=${page}&per_page=${pageSize}&tag=${category}`)
-      .then(response => { return response.json(); })
-      .then((data) => {
-        const newArticles = articles.concat(data)
-        setArticles(newArticles)
-        setPAge(page + 1)
-        if (data.length < pageSize) {
-          setEnded(true)
-        }
-        setLoading(false)
-        console.log(articles)
-      });
+
+    const response = await fetch(`https://dev.to/api/articles?top=365&tag=${selectedCategory}&page=1&per_page=3`)
+    const tagArticles = await response.json()
+    setArticles(tagArticles)
+
+    setLoading(false)
   }
 
-  console.log({ articles })
+  async function loadMore(){
 
+    const newPage = page + 1;
+    setPage(newPage)
+
+    const response = await fetch(`https://dev.to/api/articles?top=365&tag=${selectedCategory}&page=${newPage}&per_page=5`)
+    const data = await response.json()
+
+    const newArticles=articles.concat(data)
+    setArticles(newArticles)
+   
+  }
+  console.log({ articles })
   return (
     <main className="bg-white text-black ">
       <div className="container mx-auto p-8 max-w-7xl">
         <Header />
         <Carousel />
         <Trending />
-
         <h1 className="py-12 text-2xl font-bold">All Blog Post</h1>
 
-        <div className="flex gap-4">
-          <div onClick={() => selectCategory('backtend')}>All</div>
-          <div onClick={() => selectCategory('javascript')}>Javascript</div>
-          <div onClick={() => selectCategory('react')}>React</div>
-          <div onClick={() => selectCategory('webdev')}>Web development</div>
-          <div onClick={() => selectCategory('database')}>Database</div>
-          <div onClick={() => selectCategory('frontend')}>Frontend</div>
-          <div onClick={() => selectCategory('backtend')}>Backend</div>
+        <div className="flex gap-8 mb-8 font-bold flex-wrap">
+          {tags.map(tag => (
+            <div key={tag.value} className={`cursor-pointer hover:text-orange-500 
+              ${selectedCategory === tag.value ? "text-orange-600" : ""} `}
+              onClick={() => setSelectedCategory(tag.value)}>
+              {tag.name}
+            </div>
+          ))}
         </div>
 
         <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-8 " >
-          {articles.map((item, index) => (
+          {articles.map((item) => (
             <div key={item.id} className="card bg-base-100 bg-white border-2 border-gray">
-              <div className="card-body">
-                <div className="flex gap-2 flex-wrap">
-                  <div className="badge badge-primary">{item.tag_list[0]}</div>
+              <div className="card-body flex flex-col justify-between">
+                <div>
+                  <div className="flex gap-2 flex-wrap text-xs mb-2">
+                    {item.tag_list.map(tag => (
+                      <div className={`badge badge-primary ${selectedCategory==="" || selectedCategory===tag? "block":"hidden"}`}>{tag}</div>
+                    ))}
+                  </div>
+                  <Image src={item.social_image} width={500} height={500} className="aspect-video object-cover bg-slate-600" />
+                  <Link href={item.path} >
+                    {item.title}
+                  </Link>
                 </div>
-                <Image src={item.social_image} width={500} height={500} className="aspect-video object-cover bg-slate-600" />
-                <Link href={item.path} >
-                  {item.title}
-                </Link>
-                <div className="flex items-center gap-4 ">
-                  <Image src={item.user.profile_image_90} width={50} height={50} />
-                  <div>{item.user.name}</div>
+
+                <div className="flex items-center gap-4 justify-around">
+                  <Image src={item.user.profile_image_90} width={50} height={50} className="rounded-full"/>
+                  <div>{item.user.name}</div> 
                   <div>{dayjs(item.published_at).locale("mn").fromNow()}</div>
                 </div>
               </div>
             </div>
           ))}
         </div>
-        <div>
-          {articles.map((item, index) => {
 
-            if (!item.tag_list.includes('javascript')) {
-              return null;
-            }
-            return (
-
-              <div key={item.id} className="card bg-base-100 bg-white border-2 border-gray">
-                <div className="card-body">
-                  <div className="flex gap-2 flex-wrap">
-                    <div className="badge badge-primary">{item.tag_list[0]}</div>
-                  </div>
-                  <Image src={item.social_image} width={500} height={500} className="aspect-video object-cover bg-slate-600" />
-                  <Link href={item.path} >
-                    {item.title}
-                  </Link>
-                  <div className="flex items-center gap-4 ">
-                    <Image src={item.user.profile_image_90} width={50} height={50} />
-                    <div>{item.user.name}</div>
-                    <div>{dayjs(item.published_at).locale("mn").fromNow()}</div>
-                  </div>
-                </div>
-              </div>
-
-            )
-          })}
-        </div>
-
-        {(!ended) &&
+        {/* {(!ended) && */}
           <div className="text-center py-6" onClick={loadMore}>
             <button disabled={loading} className="btn btn-lg btn-accent ">
               {loading && <span className="loading loading-spinner text-success"></span>}
               Load more</button>
-          </div>}
+          </div>
+          {/* } */}
       </div>
       <Footer />
     </main>

@@ -52,7 +52,7 @@ export default function BlogListing() {
                   {item.title}
                 </Link>
                 <div className="flex items-center gap-4 ">
-                  <Image src={item.user.profile_image_90} width={50} height={50} />
+                  <Image src={item.user.profile_image_90} width={50} height={50} className="rounded-full"/>
                   <div>{item.user.name}</div>
                   <div>{dayjs(item.published_at).locale("mn").fromNow()}</div>
                 </div>
