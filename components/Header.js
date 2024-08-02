@@ -45,9 +45,9 @@ export function Header() {
                 className={`z-50 flex flex-col p-8 fixed top-0 bottom-0  w-64 bg-white dark:bg-slate-800 dark:text-white shadow-lg text-black transition-all 
         ${open ? "right-0 " : "-right-full"}`}
             >
-                <Link href="/">Home</Link>
-                <Link href="/blog">Blog</Link>
-                <Link href="/contact">Contact</Link>
+                <Link href="/" onClick={() => setOpen(false)}>Home</Link>
+                <Link href="/blog" onClick={() => setOpen(false)}>Blog</Link>
+                <Link href="/contact" onClick={() => setOpen(false)}>Contact</Link>
             </div>
         </div>)
 }

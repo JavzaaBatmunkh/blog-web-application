@@ -1,16 +1,9 @@
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
-import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useState } from "react";
-import dayjs from "dayjs";
-import relativeTime from 'dayjs/plugin/relativeTime' // ES 2015
-import "@/components/dayjs-mn"
-
-dayjs.extend(relativeTime)
+import { ArticleCard } from "@/components/articleCard";
 
 const pageSize = 3
-
 
 export default function BlogListing() {
   const [articles, setArticles] = useState([]);
@@ -44,20 +37,7 @@ export default function BlogListing() {
         <h1 className="py-12 text-2xl font-bold">All Blog Post</h1>
         <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-8 " >
           {articles.map((item) => (
-            <div key={item.id} className="card bg-base-100 bg-white border-2 border-gray">
-              <div className="card-body">
-                <div className="badge badge-primary">{item.tag_list[0]}</div>
-                <Image src={item.social_image} width={500} height={500} className="aspect-video object-cover bg-slate-600"/>
-                <Link href={item.path} >
-                  {item.title}
-                </Link>
-                <div className="flex items-center gap-4 ">
-                  <Image src={item.user.profile_image_90} width={50} height={50} className="rounded-full"/>
-                  <div>{item.user.name}</div>
-                  <div>{dayjs(item.published_at).locale("mn").fromNow()}</div>
-                </div>
-              </div>
-            </div>
+            <ArticleCard key={item.id} article={item}/>
           ))}
         </div>
 

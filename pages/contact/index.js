@@ -26,11 +26,11 @@ const Contact = () => {
                 <div className="card bg-slate-200 shadow-xl">
                     <div className="card-body">
                         Leave a Message
-                        <div className="flex justify-between">
-                            <label className="input input-bordered flex items-center gap-2 bg-white w-[48%]">
+                        <div className="md:flex md:justify-between flex-wrap">
+                            <label className="input input-bordered flex items-center gap-2 bg-white mb-2">
                                 <input type="text" className="grow" placeholder="Your Name" />
                             </label>
-                            <label className="input input-bordered flex items-center gap-2 bg-white w-[48%]">
+                            <label className="input input-bordered flex items-center gap-2 bg-white">
                                 <input type="text" className="grow" placeholder="Your Email" />
                             </label>
                         </div>
