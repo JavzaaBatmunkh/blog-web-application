@@ -22,7 +22,7 @@ export function ArticleCard({article}) {
                     </Link>
                 </div>
 
-                <div className="flex items-center gap-4 justify-around">
+                <div className="flex items-center gap-4 justify-between text-[#97989F] text-base font-medium">
                     <Image src={article.user.profile_image_90} width={50} height={50} className="rounded-full" />
                     <div>{article.user.name}</div>
                     <div>{dayjs(article.published_at).locale("mn").fromNow()}</div>

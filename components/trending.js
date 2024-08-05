@@ -40,7 +40,6 @@ export function Trending() {
                         </div>
                     </div>
                 ))}
-
             </div>
             <div className="md:hidden">
                 <div className="carousel w-full rounded-xl">
@@ -62,7 +61,6 @@ export function Trending() {
                             </div>
                         </div>
                     ))}
-
                 </div>
                 <div className="flex w-full justify-center gap-2 py-2">
                     <a href="#item0" className="btn btn-xs">1</a>
@@ -71,10 +69,6 @@ export function Trending() {
                     <a href="#item3" className="btn btn-xs">4</a>
                 </div>
             </div>
-
-
-
-
         </div>
     )
 }

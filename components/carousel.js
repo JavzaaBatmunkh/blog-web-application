@@ -24,11 +24,8 @@ export function Carousel() {
             {articles.map((item, index) => (
                 index>1 &&
                 <div id={`slide${index}`} className="carousel-item relative w-full" key={item.id}>
-                    <div>
-                        <Image src={item.social_image} width={1200} height={1200} className="aspect-video object-cover bg-slate-600 w-full" />
-                        <div className="inset-0 bg-gradient-to-r from-cyan-500 to-blue-500"></div>
-                        
-                    </div>
+                   
+                        <Image src={item.social_image} width={1200} height={1200} className="aspect-video object-cover bg-slate-600 w-full" /> 
                     <div className="absolute left-2 bottom-2 bg-slate-100 flex flex-col card">
                         <div className="card-body">
                             <div className="badge badge-primary">{item.tag_list[0]}</div>
