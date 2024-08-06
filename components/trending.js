@@ -23,7 +23,7 @@ export function Trending() {
         <div>
             <h1 className="py-12 text-2xl font-bold "> Trending</h1>
 
-            <div className="lg:flex-row lg:flex flex flex-col gap-8 md:grid md:grid-cols-2 hidden md:block" >
+            <div className="lg:grid-cols-4 lg:grid flex flex-col gap-8 md:grid md:grid-cols-2 hidden md:block" >
                 {articles.map((item, index) => (
                     index < 4 &&
                     <div key={item.id} className="card bg-base-100 bg-white border-2 border-gray image-full" >
