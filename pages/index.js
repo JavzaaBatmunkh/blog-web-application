@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import { Trending } from "@/components/trending";
 import { Carousel } from "@/components/carousel";
 import { ArticleCard } from "@/components/articleCard";
+import { Test } from "@/components/test";
+
 
 const tags = [{ value: "", name: "All" },
 { value: "javascript", name: "JavaScript" },
@@ -52,7 +54,7 @@ export default function Home() {
     <main className="bg-white text-black ">
       <div className="container mx-auto p-8 max-w-7xl">
         <Header />
-        <Carousel />
+        <Test/>
         <Trending />
         <h1 className="py-12 text-2xl font-bold">All Blog Post</h1>
 
