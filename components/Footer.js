@@ -4,6 +4,7 @@ import { FaFacebook } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
+
 export function Footer() {
     return (
         <div className="sm:bg-[#E8E8EA] mt-4 ">

@@ -1,13 +1,10 @@
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { useEffect, useState } from "react";
-
 import { Trending } from "@/components/trending";
-import { Carousel } from "@/components/carousel";
 import { ArticleCard } from "@/components/articleCard";
 import { Test } from "@/components/test";
-
-
+import Head from "next/head";
 const tags = [{ value: "", name: "All" },
 { value: "javascript", name: "JavaScript" },
 { value: "react", name: "React" },
@@ -52,6 +49,9 @@ export default function Home() {
   // console.log({ articles })
   return (
     <main className="bg-white text-black ">
+      <Head>
+        <title>Web App</title>
+      </Head>
       <div className="container mx-auto p-8 max-w-7xl">
         <Header />
         <Test/>
