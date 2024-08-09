@@ -7,7 +7,7 @@ import { FaLinkedin } from "react-icons/fa";
 
 export function Footer() {
     return (
-        <div className="sm:bg-[#E8E8EA] mt-4 ">
+        <div className="sm:bg-[#E8E8EA] dark:bg-slate-600 mt-4 ">
             <div className="container mx-auto flex sm:justify-between pt-8 justify-center p-8 max-w-7xl">
                 <div className="w-72 hidden sm:block">
                     <h2 className="font-bold">About</h2>

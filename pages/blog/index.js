@@ -31,9 +31,10 @@ export default function BlogListing() {
   }
 
   return (
-    <main className="bg-white text-black">
-      <div className="container mx-auto">
-        <Header />
+    <main>
+      <Header />
+      <div className="container mx-auto max-w-7xl ">
+        
         <h1 className="py-12 text-2xl font-bold">All Blog Post</h1>
         <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-8 " >
           {articles.map((item) => (

@@ -8,7 +8,7 @@ import "@/components/dayjs-mn"
 dayjs.extend(relativeTime)
 export function ArticleCard({article}) {
     return (
-        <div key={article.id} className="card bg-base-100 bg-white border-2 border-gray">
+        <div key={article.id} className="card bg-base-100 border-2 border-gray">
             <div className="card-body flex flex-col justify-between">
                 <div>
                     <div className="flex gap-1 flex-wrap text-xs mb-2 h-10">

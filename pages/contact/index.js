@@ -3,7 +3,7 @@ import { Header } from "@/components/Header"
 
 const Contact = () => {
     return (
-        <main className="bg-white text-black">
+        <main>
             <Header/>
             <div className="max-w-xl mx-auto flex flex-col gap-10 p-8">
                 <h1 className="text-4xl font-semibold">Contact Us</h1>
@@ -23,7 +23,7 @@ const Contact = () => {
                         </div>
                     </div>
                 </div>
-                <div className="card bg-slate-200 shadow-xl">
+                <div className="card bg-slate-200 dark:bg-slate-400 shadow-xl">
                     <div className="card-body">
                         Leave a Message
                         <div className="md:flex md:justify-between flex-wrap">

@@ -5,6 +5,7 @@ import { Trending } from "@/components/trending";
 import { ArticleCard } from "@/components/articleCard";
 import { Test } from "@/components/test";
 import Head from "next/head";
+import { TrendingSwiper } from "@/components/trendingSwiper";
 const tags = [{ value: "", name: "All" },
 { value: "javascript", name: "JavaScript" },
 { value: "react", name: "React" },
@@ -19,10 +20,10 @@ export default function Home() {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(false)
   const [selectedCategory, setSelectedCategory] = useState("")
-  const [page, setPage]=useState(1)
+  const [page, setPage] = useState(1)
 
   useEffect(() => {
-    loadArticles()  
+    loadArticles()
     setPage(1)
   }, [selectedCategory]);
 
@@ -36,7 +37,7 @@ export default function Home() {
     setLoading(false)
   }
 
-  async function loadMore(){
+  async function loadMore() {
 
     const newPage = page + 1;
     setPage(newPage)
@@ -44,18 +45,21 @@ export default function Home() {
     const response = await fetch(`https://dev.to/api/articles?top=365&tag=${selectedCategory}&page=${newPage}&per_page=3`)
     const data = await response.json()
 
-    const newArticles=articles.concat(data)
-    setArticles(newArticles)}
+    const newArticles = articles.concat(data)
+    setArticles(newArticles)
+  }
   // console.log({ articles })
   return (
-    <main className="bg-white text-black ">
+    <main >
       <Head>
         <title>Web App</title>
       </Head>
+      <Header />
       <div className="container mx-auto p-8 max-w-7xl">
-        <Header />
-        <Test/>
-        <Trending />
+        <Test />
+        <TrendingSwiper/>
+       
+       
         <h1 className="py-12 text-2xl font-bold">All Blog Post</h1>
 
         <div className="flex gap-8 mb-8 font-bold flex-wrap">
@@ -70,16 +74,16 @@ export default function Home() {
 
         <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-8 " >
           {articles.map((item) => (
-            <ArticleCard key={item.id} article={item}/>
+            <ArticleCard key={item.id} article={item} />
           ))}
         </div>
- 
-          <div className="text-center py-6" onClick={loadMore}>
-            <button disabled={loading} className="btn btn-lg btn-accent ">
-              {loading && <span className="loading loading-spinner text-success"></span>}
-              Load more</button>
-          </div>
-          
+
+        <div className="text-center py-6" onClick={loadMore}>
+          <button disabled={loading} className="btn btn-lg btn-accent ">
+            {loading && <span className="loading loading-spinner text-success"></span>}
+            Load more</button>
+        </div>
+
       </div>
       <Footer />
     </main>
