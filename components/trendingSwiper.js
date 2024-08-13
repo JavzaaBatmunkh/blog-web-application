@@ -31,6 +31,7 @@ export function TrendingSwiper() {
 
     return(
     <div>
+        <h1 className="py-12 text-2xl font-bold">Trending</h1>
         <div className='mt-8 hidden md:block'>
         <Swiper
             modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay, Zoom]}

@@ -58,7 +58,7 @@ export function Test() {
                     <div className="absolute left-2 bottom-2 bg-slate-100 dark:bg-slate-600 flex flex-col card">
                         <div className="card-body">
                             <div className="badge badge-primary">{item.tag_list[0]}</div>
-                            <Link href={item.path} className="text-4xl font-semibold">
+                            <Link href={item.path} className="md:text-4xl font-semibold text-2xl">
                                 {item.title}
                             </Link>
                             <div>{dayjs(item.published_at).format("MMMM DD, YYYY")}</div>
